@@ -1,7 +1,9 @@
 FROM alpine:edge as build
 
 RUN apk --update --no-cache add lua-dev luarocks build-base perl linux-headers
-RUN luarocks-5.1 install lua-cjson && luarocks-5.1 install luasocket
+RUN luarocks-5.1 install lua-cjson && \
+    luarocks-5.1 install luasocket && \
+    luarocks-5.1 install penlight
 WORKDIR /tmp
 RUN curl https://github.com/wg/wrk/archive/refs/heads/master.zip -L -o wrk.zip && \
     unzip wrk.zip && \
